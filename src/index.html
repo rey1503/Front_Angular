@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Pack">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/src/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="validaciones.js"></script>
+  <script src="/src/index.js"></script>
+  <title>Task</title>
+</head>
+<body ng-controller="Pack&Pack">
+  <form name="myForm" novalidate>
+    <div class="card " style="width: 25rem;" id="card">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="Name" ng-model="datos.Name" id="floatingInput" placeholder="Name" required>
+        <span style="color:red" ng-show="myForm.Name.$dirty && myForm.Name.$invalid">
+          <span ng-show="myForm.Name.$error.required">Name is required.</span>
+          </span>
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <input type="text" class="form-control" name="Age" ng-model="datos.Age" id="floatingInput" placeholder="Age" required  maxlength="2">
+        <span style="color:red" ng-show="myForm.Age.$dirty && myForm.Age.$invalid">
+          <span ng-show="myForm.Age.$error.required">Age is required.</span>
+        </span>
+        <label for="floatingPassword">Age</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <input type="password" class="form-control" ng-model="datos.Password" id="floatingPassword"
+          placeholder="Password" name="Password" maxlength="10" required>
+          <span style="color:red" ng-show="myForm.Password.$dirty && myForm.Password.$invalid">
+            <span ng-show="myForm.Password.$error.required">Password is required.</span>
+            </span>
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <select class="form-select" ng-model="datos.Gender" id="floatingSelect"
+          aria-label="Floating label select example" required name="Gender">
+          <option value="Man">Man</option>
+          <option value="Woman">Woman</option>
+        </select>
+        <span style="color:red" ng-show="myForm.Gender.$dirty && myForm.Gender.$invalid">
+          <span ng-show="myForm.Gender.$error.required">Gender is required.</span>
+          </span>
+        <label for="floatingSelect">Gender</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <input type="text" class="form-control" ng-model="datos.Hobby" id="floatingInput" placeholder="Hobby" name="Hobby" required>
+        <span style="color:red" ng-show="myForm.Hobby.$dirty && myForm.Hobby.$invalid">
+          <span ng-show="myForm.Hobby.$error.required">Hobby is required.</span>
+          </span>
+        <label for="floatingPassword">Hobby</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <input type="text" class="form-control" ng-model="datos.Mail" id="floatingInput" placeholder="Mail" name="Mail" required>
+        <span style="color:red" ng-show="myForm.Mail.$dirty && myForm.Mail.$invalid">
+          <span ng-show="myForm.Mail.$error.required">Email is required.</span>
+          <span ng-show="myForm.Mail.$error.Mail">Invalid email address.</span>
+          </span>
+        <label for="floatingPassword">Mail</label>
+      </div>
+      <div class="form-floating mb-3" >
+        <input type="text" class="form-control" ng-model="datos.Telephone" id="floatingInput" placeholder="Telephone" name="Telephone" required maxlength="10">
+        <span style="color:red" ng-show="myForm.Telephone.$dirty && myForm.Telephone.$invalid">
+          <span ng-show="myForm.Telephone.$error.required">Telephone is required.</span>
+          </span>
+        <label for="floatingPassword">Telephone</label>
+      </div> <br>
+      <button type="button" class="btn btn-danger" ng-click="addPost()">GUARDAR</button>
+    </div>  
+  </form>
+  <div id="table">
+    <table class="table table-bordered border-primary">
+      <div class="form-floating mb-3" >
+        <input type="text" class="form-control" ng-model="test" id="floatingInput"
+          placeholder="Buscar por nombre o pasatiempo">
+        <label for="floatingPassword" >Buscar...</label>
+      </div>
+      <tr>
+        <td>Name</td>
+        <td>Telephone</td>
+        <td>Age</td>
+        <td>Gender</td>
+        <td>Hobby</td>
+        <td>Date</td>
+        <td>Delete</td>
+      </tr>
+      <tr ng-repeat="tabla in tablas | filter:test" id="tabletwo">
+        <td>{{tabla.Name}}</td>
+        <td>{{tabla.Telephone}}</td>
+        <td>{{tabla.Age}}</td>
+        <td>{{tabla.Gender}}</td>
+        <td>{{tabla.Hobby}}</td>
+        <td>{{tabla.Date}}</td>
+        <td><button ng-click=eliminiar(tabla) class="btn btn-danger">X</button></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
